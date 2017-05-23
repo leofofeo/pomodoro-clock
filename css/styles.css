@@ -4,7 +4,74 @@
 body {
 	margin: 0 auto;
 	background: #2980b9!important;
-	
+}
+
+h3 {
+	color:#fff!important;
+	font-weight:bold!important;
+	font-family: 'Roboto', sans-sarif!important;
+}
+
+button#reset, button#pause-resume {
+	font-family: 'Roboto', sans-sarif!important;
+	min-width:150px;
+	font-weight:bold;
+}
+
+div#main-clock-display {
+	border:5px solid black;
+	width: 70%;
+	min-height: 400px;
+	border-radius:50%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	color:#fff!important;
+	font-weight:bold;
+	font-size:4em;
+	font-family: 'Montserrat', sans-sarif!important;
+	margin-top:100px;
+}
+
+
+div.settings-display {
+	min-height:150px;
+	min-width: 150px;
+	border:1px solid black;
+	border-radius: 60%;
+	margin:10%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Roboto', sans-sarif!important;
+	color:#fff!important;
+	font-size: 2em;
+}
+
+
+
+div#time-controls {
+	margin:40px auto;
+	padding-top:30px;
+}
+
+div#time-controls button {
+	margin-top:20px;
+}
+
+div#work-time-area-row, div#rest-time-area-row {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align:center;
+}
+
+#main-content-section {
+	margin-bottom:200px;
+}
+
+#work-time-area {
+	margin-bottom: 50px; 
 }
 
 .container .nomargin {
@@ -17,9 +84,16 @@ body {
 	margin:10% auto;
 }
 
+.main-clock-container {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .padding {
 	margin: 50px 0;
 }
+
 
 .title {
 	font-size: 3.2em!important;

@@ -66,15 +66,60 @@
               <div class="col-md-3"></div>
               <div class="col-md-6">
                 <div class="text-center">
-                <h1 class="title padding">
-                  Pomodoro Clock
-                </h1>
+                  <h1 class="title padding">
+                    Pomodoro Clock
+                  </h1>
                 </div>
               </div>
             </div> <!-- End Title Row-->
           </div>
 
         </section>  <!-- End Section 1 -->
+
+        <section id="main-content-section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 text-center"><!-- Start of adjustment column-->
+                <div id="work-time-area">
+                  <h3>Work Time</h3>
+                  <div id="work-time-area-row">
+                    <button class="btn btn-default time-adjust" id="work-time-decrement"><i class="fa fa-minus"></i></button>
+                    <div id="work-time-display" class="settings-display">25:00</div>
+                    <button class="btn btn-default time-adjust" id="work-time-increment"><i class="fa fa-plus"></i></button>
+                  </div>      
+                </div>
+                <div id="rest-time-area">
+                  <h3>Rest Time</h3>
+                  <div id="rest-time-area-row">
+                    <button class="btn btn-default time-adjust" id="rest-time-decrement"><i class="fa fa-minus"></i></button>
+                    <div id="rest-time-display" class="settings-display">5:00</div>
+                    <button class="btn btn-default time-adjust" id="rest-time-increment"><i class="fa fa-plus"></i></button>
+                  </div>
+                  
+                </div>
+
+              </div><!-- End of adjustment column -->
+              
+
+              <div class="col-md-6 main-clock-container"><!-- Start of display column -->
+                <div id="main-clock-display" class="text-center">
+                  24:00
+                </div>
+              </div><!-- End of display column -->
+              
+
+              <div class="col-md-3"><!-- Start of controls column -->
+                <div id="time-controls">
+                  <button id="pause-resume" class="btn btn-default">
+                    <i class="fa fa-play"></i>
+                  </button>
+                  <button id="reset" class="btn btn-default">Reset</button>  
+                </div>
+
+              </div><!-- end of controls column -->
+            </div>
+          </div>
+        </section>
 
 
       </div> <!-- End Container No Margin-->
