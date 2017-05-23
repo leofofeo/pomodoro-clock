@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Orbitron|Roboto');
 
 
 body {
@@ -13,7 +13,7 @@ h3 {
 }
 
 button#reset, button#pause-resume {
-	font-family: 'Roboto', sans-sarif!important;
+	font-family: 'Orbitron', sans-sarif!important;
 	min-width:150px;
 	font-weight:bold;
 }
@@ -29,7 +29,7 @@ div#main-clock-display {
 	color:#fff!important;
 	font-weight:bold;
 	font-size:4em;
-	font-family: 'Montserrat', sans-sarif!important;
+	font-family: 'Orbitron', sans-sarif!important;
 	margin-top:100px;
 }
 
@@ -43,7 +43,7 @@ div.settings-display {
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	font-family: 'Roboto', sans-sarif!important;
+	font-family: 'Orbitron', sans-sarif!important;
 	color:#fff!important;
 	font-size: 2em;
 }
@@ -51,12 +51,12 @@ div.settings-display {
 
 
 div#time-controls {
-	margin:40px auto;
-	padding-top:30px;
+	margin:30px auto;
+	padding-top:20px;
 }
 
 div#time-controls button {
-	margin-top:20px;
+	margin-top:50px;
 }
 
 div#work-time-area-row, div#rest-time-area-row {
@@ -68,6 +68,12 @@ div#work-time-area-row, div#rest-time-area-row {
 
 #main-content-section {
 	margin-bottom:200px;
+}
+
+#reset {
+	color:#c0392b;
+	padding: 20px 0;
+	font-size:1.5em;
 }
 
 #work-time-area {
@@ -82,6 +88,10 @@ div#work-time-area-row, div#rest-time-area-row {
 
 .content-main {
 	margin:10% auto;
+}
+
+.fa-play {
+	color:#27ae60!important;
 }
 
 .main-clock-container {
