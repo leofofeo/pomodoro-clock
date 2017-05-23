@@ -22,7 +22,7 @@ $('button').on('click', function(){
 			incrementRestTime();
 			break;
 		case 'pause-resume':
-			StartPauseClock();
+			manageClock();
 			break;
 		case 'reset':
 			resetClock();
@@ -33,7 +33,7 @@ $('button').on('click', function(){
 
 
 
-var StartPauseClock = function(){
+var manageClock = function(){
 	if($('#main-clock-display').hasClass('in-work')){
 		pauseClock();
 	} else {
