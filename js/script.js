@@ -5,8 +5,6 @@ $('document').ready(function(){
 	displayWorkTime(defaultWorkTime);
 	displayRestTime(defaultRestTime);
 	displayTime();
-	
-	// $('#alarm-sound').play();
 });
 
 
@@ -227,22 +225,3 @@ var playAudio = function(){
 
 	GlobalAlarmAudio.play();
 }
-
-// var runClock = function(){
-
-// 	var minutes = parseInt($('#main-minutes').html());
-// 	var seconds = parseInt($('#main-seconds').html());
-
-// 	if(seconds === 0){
-// 		minutes -= 1;
-// 		seconds = 59;
-// 	} else if (seconds === 1) {
-// 		seconds = '00';
-// 	} else {
-// 		seconds -= 1;
-// 	}
-
-// 	$('#main-minutes').html(minutes);
-// 	$('#main-seconds').html(seconds);
-
-// }
