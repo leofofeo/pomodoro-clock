@@ -65,48 +65,7 @@ var startClock = function(){
 
 	setClockColor('start');	
 
-	GlobalClearIntervalId = window.setInterval(function(){
-
-		var minutes = parseInt($('#main-minutes').html());
-		var seconds = parseInt($('#main-seconds').html());
-
-		if(minutes === 0 && seconds === 0){
-			if($('#main-clock-display').hasClass('in-work')){
-				$('#main-clock-display').removeClass('in-work').addClass('in-rest');
-			} else {
-				$('#main-clock-display').removeClass('in-rest').addClass('in-work');
-
-			}
-			clearInterval(GlobalClearIntervalId);
-			pauseClock();
-			displayTime();
-			setClockColor('start');
-			playAudio();
-			return;
-
-		}
-
-		if(seconds === 0){
-			minutes -= 1;
-			seconds = 59;
-		} else if (seconds < 1) {
-			seconds = '00';
-		} else {
-			seconds -= 1;
-		}
-
-		if(seconds < 10){
-			seconds = '0' + seconds;
-		}
-
-		if (minutes < 10){
-			minutes = '0' + minutes;
-		}
-
-		$('#main-minutes').html(minutes);
-		$('#main-seconds').html(seconds);
-
-	}, 1000);
+	GlobalClearIntervalId = window.setInterval(runClock, 1000);
 
 }
 
@@ -224,4 +183,46 @@ var setClockColor = function(runningStatus){
 var playAudio = function(){
 
 	GlobalAlarmAudio.play();
+}
+
+var runClock = function(){
+	
+		var minutes = parseInt($('#main-minutes').html());
+		var seconds = parseInt($('#main-seconds').html());
+
+		if(minutes === 0 && seconds === 0){
+			if($('#main-clock-display').hasClass('in-work')){
+				$('#main-clock-display').removeClass('in-work').addClass('in-rest');
+			} else {
+				$('#main-clock-display').removeClass('in-rest').addClass('in-work');
+
+			}
+			clearInterval(GlobalClearIntervalId);
+			pauseClock();
+			displayTime();
+			setClockColor('start');
+			playAudio();
+			return;
+
+		}
+
+		if(seconds === 0){
+			minutes -= 1;
+			seconds = 59;
+		} else if (seconds < 1) {
+			seconds = '00';
+		} else {
+			seconds -= 1;
+		}
+
+		if(seconds < 10){
+			seconds = '0' + seconds;
+		}
+
+		if (minutes < 10){
+			minutes = '0' + minutes;
+		}
+
+		$('#main-minutes').html(minutes);
+		$('#main-seconds').html(seconds);
 }
