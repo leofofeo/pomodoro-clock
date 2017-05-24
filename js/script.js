@@ -5,10 +5,14 @@ $('document').ready(function(){
 	displayWorkTime(defaultWorkTime);
 	displayRestTime(defaultRestTime);
 	displayTime();
+	
+	// $('#alarm-sound').play();
 });
 
 
+
 var GlobalClearIntervalId;
+var GlobalAlarmAudio = new Audio('./analog-watch-alarm.mp3');
 
 $('button').on('click', function(){
 	switch($(this).attr('id')){
@@ -49,6 +53,10 @@ var manageClock = function(){
 
 var startClock = function(){
 
+	if (!GlobalAlarmAudio.paused || GlobalAlarmAudio.currentTime){
+		GlobalAlarmAudio.pause();
+	}
+
 	if($('#pause-resume').hasClass('in-pause')){
 		$('#pause-resume').removeClass('in-pause');
 	}
@@ -75,6 +83,7 @@ var startClock = function(){
 			pauseClock();
 			displayTime();
 			setClockColor('start');
+			playAudio();
 			return;
 
 		}
@@ -214,6 +223,10 @@ var setClockColor = function(runningStatus){
 	}
 }
 
+var playAudio = function(){
+
+	GlobalAlarmAudio.play();
+}
 
 // var runClock = function(){
 
