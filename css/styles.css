@@ -37,7 +37,7 @@ div#main-clock-display {
 div.settings-display {
 	min-height:150px;
 	min-width: 150px;
-	border:1px solid black;
+	border:5px solid black;
 	border-radius: 60%;
 	margin:10%;
 	display:flex;
@@ -86,6 +86,14 @@ div#work-time-area-row, div#rest-time-area-row {
 
 #work-time-area {
 	margin-bottom: 50px; 
+}
+
+#work-time-display {
+	border-color: #f39c12!important;
+}
+
+#rest-time-display {
+	border-color:#27ae60!important;
 }
 
 .container .nomargin {

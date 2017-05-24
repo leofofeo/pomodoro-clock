@@ -37,6 +37,8 @@ $('button').on('click', function(){
 var manageClock = function(){
 	if($('#pause-resume').hasClass('in-play')){
 		pauseClock();
+	} else if ($('#pause-resume').hasClass('in-pause')){
+		startClock();
 	} else {
 		startClock();
 	}
@@ -46,14 +48,28 @@ var manageClock = function(){
 var startClock = function(){
 	console.log('from startClock()');
 	if($('#pause-resume').hasClass('in-pause')){
-		$('#pause-resume').removeClass('in-pause').addClass('in-play');
+		$('#pause-resume').removeClass('in-pause');
 	}
+
+	$('#pause-resume').addClass('in-play');
+
+	$('#pause-resume').html('<i class="fa fa-pause fa-4x"></i>');
+
+	setClockColor('start');
 
 }
 
 var pauseClock = function(){
 	console.log('from pauseClock()');
-	$('#pause-resume').removeClass('in-play').addClass('in-pause');
+	if($('#pause-resume').hasClass('in-play')){
+		$('#pause-resume').removeClass('in-play');
+	}
+
+	$('#pause-resume').addClass('in-pause'); 
+
+	$('#pause-resume').html('<i class="fa fa-play fa-4x"></i>');
+
+	setClockColor('pause');
 }
 
 var resetClock = function(){
@@ -63,10 +79,16 @@ var resetClock = function(){
 	}
 
 	displayTime();
+
 	if ($('#pause-resume').hasClass('in-pause')){
-		$('#pause-resume').removeClass('in-pause').addClass('in-play');
+		$('#pause-resume').removeClass('in-pause');
+	} else if($('#pause-resume').hasClass('in-play')){
+		$('#pause-resume').removeClass('in-play');
 	}
 
+	$('#pause-resume').html('<i class="fa fa-play fa-4x"></i>')
+
+	setClockColor('');
 }
 
 var incrementWorkTime  = function(){
@@ -127,4 +149,19 @@ var displayTime = function(time){
 		$('#main-minutes').html( $('#rest-time-display').html());
 	}
 	$('#main-seconds').html('00');
+}
+
+
+var setClockColor = function(runningStatus){
+	if(runningStatus === 'start'){
+		if($('#main-clock-display').hasClass('in-work')){
+			$('#main-clock-display').css('border-color', "#f39c12");	
+		} else {
+			$('#main-clock-display').css('border-color', '#27ae60');
+		}		
+	} else if (runningStatus === 'pause'){
+		$('#main-clock-display').css('border-color', '#e74c3c');
+	} else {
+		$('#main-clock-display').css('border-color', 'black');
+	}
 }
