@@ -29,12 +29,13 @@ $('button').on('click', function(){
 			break;
 
 	}
+	displayTime();
 });
 
 
 
 var manageClock = function(){
-	if($('#main-clock-display').hasClass('in-work')){
+	if($('#pause-resume').hasClass('in-play')){
 		pauseClock();
 	} else {
 		startClock();
@@ -44,15 +45,27 @@ var manageClock = function(){
 
 var startClock = function(){
 	console.log('from startClock()');
+	if($('#pause-resume').hasClass('in-pause')){
+		$('#pause-resume').removeClass('in-pause').addClass('in-play');
+	}
 
 }
 
 var pauseClock = function(){
 	console.log('from pauseClock()');
+	$('#pause-resume').removeClass('in-play').addClass('in-pause');
 }
 
 var resetClock = function(){
-	console.log('from resetClock()');
+	
+	if($('#main-clock-display').hasClass('in-rest')){
+		$('#main-clock-display').removeClass('in-rest').addClass('in-work');
+	}
+
+	displayTime();
+	if ($('#pause-resume').hasClass('in-pause')){
+		$('#pause-resume').removeClass('in-pause').addClass('in-play');
+	}
 
 }
 
@@ -107,7 +120,11 @@ var displayTime = function(time){
 	console.log('from displayTime()');
 	if($('#main-clock-display').hasClass('in-work')){
 		//take time from workTime and display it
+		$('#main-minutes').html($('#work-time-display').html());
+
 	} else {
 		//take time from restTime and display it
+		$('#main-minutes').html( $('#rest-time-display').html());
 	}
+	$('#main-seconds').html('00');
 }

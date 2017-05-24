@@ -70,6 +70,14 @@ div#work-time-area-row, div#rest-time-area-row {
 	margin-bottom:200px;
 }
 
+#main-minutes {
+	margin-right:5px;
+}
+
+#main-seconds {
+	margin-left: 5px;
+}
+
 #reset {
 	color:#c0392b;
 	padding: 20px 0;
