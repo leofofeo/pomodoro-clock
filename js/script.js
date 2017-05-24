@@ -1,6 +1,6 @@
 //JS and jQuery for RQ
 $('document').ready(function(){
-	var defaultWorkTime = 1;
+	var defaultWorkTime = 25;
 	var defaultRestTime = 5;
 	displayWorkTime(defaultWorkTime);
 	displayRestTime(defaultRestTime);
