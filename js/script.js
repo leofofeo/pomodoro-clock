@@ -1,35 +1,37 @@
 //JS and jQuery for RQ
 $('document').ready(function(){
-	var defaultWorkTime = 25;
+	var defaultWorkTime = 1;
 	var defaultRestTime = 5;
 	displayWorkTime(defaultWorkTime);
 	displayRestTime(defaultRestTime);
 	displayTime();
 });
 
+
+var GlobalClearIntervalId;
+
 $('button').on('click', function(){
 	switch($(this).attr('id')){
 		case 'work-time-decrement':
-			decrementWorkTime();
-			break;
+		decrementWorkTime();
+		break;
 		case 'work-time-increment':
-			incrementWorkTime();
-			break;
+		incrementWorkTime();
+		break;
 		case 'rest-time-decrement':
-			decrementRestTime();
-			break;
+		decrementRestTime();
+		break;
 		case 'rest-time-increment':
-			incrementRestTime();
-			break;
+		incrementRestTime();
+		break;
 		case 'pause-resume':
-			manageClock();
-			break;
+		manageClock();
+		break;
 		case 'reset':
-			resetClock();
-			break;
+		resetClock();
+		break;
 
 	}
-	displayTime();
 });
 
 
@@ -46,7 +48,7 @@ var manageClock = function(){
 }
 
 var startClock = function(){
-	console.log('from startClock()');
+
 	if($('#pause-resume').hasClass('in-pause')){
 		$('#pause-resume').removeClass('in-pause');
 	}
@@ -55,12 +57,54 @@ var startClock = function(){
 
 	$('#pause-resume').html('<i class="fa fa-pause fa-4x"></i>');
 
-	setClockColor('start');
+	setClockColor('start');	
+
+	GlobalClearIntervalId = window.setInterval(function(){
+
+		var minutes = parseInt($('#main-minutes').html());
+		var seconds = parseInt($('#main-seconds').html());
+
+		if(minutes === 0 && seconds === 0){
+			if($('#main-clock-display').hasClass('in-work')){
+				$('#main-clock-display').removeClass('in-work').addClass('in-rest');
+			} else {
+				$('#main-clock-display').removeClass('in-rest').addClass('in-work');
+
+			}
+			clearInterval(GlobalClearIntervalId);
+			pauseClock();
+			displayTime();
+			setClockColor('start');
+			return;
+
+		}
+
+		if(seconds === 0){
+			minutes -= 1;
+			seconds = 59;
+		} else if (seconds < 1) {
+			seconds = '00';
+		} else {
+			seconds -= 1;
+		}
+
+		if(seconds < 10){
+			seconds = '0' + seconds;
+		}
+
+		if (minutes < 10){
+			minutes = '0' + minutes;
+		}
+
+		$('#main-minutes').html(minutes);
+		$('#main-seconds').html(seconds);
+
+	}, 1000);
 
 }
 
 var pauseClock = function(){
-	console.log('from pauseClock()');
+	
 	if($('#pause-resume').hasClass('in-play')){
 		$('#pause-resume').removeClass('in-play');
 	}
@@ -70,6 +114,7 @@ var pauseClock = function(){
 	$('#pause-resume').html('<i class="fa fa-play fa-4x"></i>');
 
 	setClockColor('pause');
+	window.clearInterval(GlobalClearIntervalId);
 }
 
 var resetClock = function(){
@@ -89,12 +134,14 @@ var resetClock = function(){
 	$('#pause-resume').html('<i class="fa fa-play fa-4x"></i>')
 
 	setClockColor('');
+	clearInterval(GlobalClearIntervalId);
 }
 
 var incrementWorkTime  = function(){
 	var workTime = parseInt($('#work-time-display').html());
 	workTime += 1;
 	displayWorkTime(workTime);
+	displayTime();
 }
 
 var decrementWorkTime = function(){
@@ -105,12 +152,14 @@ var decrementWorkTime = function(){
 		workTime -= 1;
 		displayWorkTime(workTime);
 	}
+	displayTime();
 }
 
 var incrementRestTime = function(){
 	var restTime = parseInt($('#rest-time-display').html());
 	restTime += 1;
 	displayRestTime(restTime);
+	displayTime();
 }
 
 var decrementRestTime = function(){
@@ -122,30 +171,28 @@ var decrementRestTime = function(){
 		restTime -= 1;
 		displayRestTime(restTime);
 	}
+	displayTime();
 }
 
 var displayWorkTime = function(workTime){
-	console.log('from displayWorkTime()');
 	
 	$('#work-time-display').html(workTime);
 }
 
 var displayRestTime = function(restTime){
-	console.log('from displayRestTime');
-	// var restTimeMinutes = restTime.getMinutes();
-	// var restTimeSeconds = restTime.getSeconds();
-	// var fullRestTime = restTimeMinutes + ":" + restTimeSeconds;
+
 	$('#rest-time-display').html(restTime);
 }
 
-var displayTime = function(time){
-	console.log('from displayTime()');
+var displayTime = function(){
+
 	if($('#main-clock-display').hasClass('in-work')){
 		//take time from workTime and display it
 		$('#main-minutes').html($('#work-time-display').html());
 
 	} else {
 		//take time from restTime and display it
+		console.log('from displayTime else');
 		$('#main-minutes').html( $('#rest-time-display').html());
 	}
 	$('#main-seconds').html('00');
@@ -161,7 +208,28 @@ var setClockColor = function(runningStatus){
 		}		
 	} else if (runningStatus === 'pause'){
 		$('#main-clock-display').css('border-color', '#e74c3c');
-	} else {
+	} 
+	else {
 		$('#main-clock-display').css('border-color', 'black');
 	}
 }
+
+
+// var runClock = function(){
+
+// 	var minutes = parseInt($('#main-minutes').html());
+// 	var seconds = parseInt($('#main-seconds').html());
+
+// 	if(seconds === 0){
+// 		minutes -= 1;
+// 		seconds = 59;
+// 	} else if (seconds === 1) {
+// 		seconds = '00';
+// 	} else {
+// 		seconds -= 1;
+// 	}
+
+// 	$('#main-minutes').html(minutes);
+// 	$('#main-seconds').html(seconds);
+
+// }
